@@ -1,14 +1,46 @@
 {
+	"columns": {
+        "prefix": ["columns"],
+        "body": ["\\begin{columns}",
+		"	\\begin{column}{${1}\\textwidth}",
+		"		\\begin{figure}[H]",
+		"			\\centering",
+		"			\\includegraphics[width = 1\\textwidth]{\\FigurePath/${3}}",
+		"		\\end{figure}",
+		"	\\end{column}",
+		"	\\begin{column}{${2}\\textwidth}",
+		"		\\begin{figure}[H]",
+		"			\\centering",
+		"			\\includegraphics[width = 1\\textwidth]{\\FigurePath/${4}}",
+		"		\\end{figure}",
+		"	\\end{column}",
+		"\\end{columns}"
+        ],
+        "description": "2 columns"
+    },
+	
 	"figure": {
         "prefix": ["figure"],
         "body": ["\\begin{figure}[H]",
 				"\\centering",
-				"\\includegraphics[width = ${1:1}\\textwidth]{${2:path}}",
-				"\\caption{${3:}}",
-				"\\label{}",
+				"\\includegraphics[width = ${1:1}\\textwidth]{\\FigurePath/${2:path}}",
 			"\\end{figure}"
         ],
         "description": "block to insert a new figure"
+    },
+
+	"item": {
+        "prefix": "ii",
+        "body": [ "\\item "
+        ],
+        "description": "insert item"
+    },
+
+	"linebreak": {
+        "prefix": "lb",
+        "body": [ "\\linebreak "
+        ],
+        "description": "insert linebreak"
     },
 
 	"frac": {
@@ -25,7 +57,7 @@
     },
 	"int": {
         "prefix": "int",
-        "body": [ "\\int_{$1}^{$2}"
+        "body": [ "\\int_{$1}^{$2} $4 \\mathrm{d} $3"
         ],
         "description": "insert integral operator"
     },
@@ -49,30 +81,30 @@
 	"frame": {
         "prefix": ["frame"],
         "body": ["\\begin{frame}{${1:Frametitle}}",
-                 "${2}",
+                 "	${2}",
                  "\\end{frame}"
         ],
         "description": "Insert new frame"
     },
 
-    "parenthesis1": {
-		"prefix": "\\(",
-		"body": [
-			"\\left( $1 \\right)"
-		]
-	},
-	"parenthesis2": {
-		"prefix": "\\[",
-		"body": [
-			"\\left[ $1 \\right]"
-		]
-	},
-	"parenthesis3": {
-		"prefix": "\\[[",
-		"body": [
-			"\\left\\{ $1 \\right\\}"
-		]
-	},
+    // "parenthesis1": {
+	// 	"prefix": "\\(",
+	// 	"body": [
+	// 		"\\left( $1 \\right)"
+	// 	]
+	// },
+	// "parenthesis2": {
+	// 	"prefix": "\\[",
+	// 	"body": [
+	// 		"\\left[ $1 \\right]"
+	// 	]
+	// },
+	// "parenthesis3": {
+	// 	"prefix": "\\[[",
+	// 	"body": [
+	// 		"\\left\\{ $1 \\right\\}"
+	// 	]
+	// },
 
     "bold": {
 		"prefix": "bold",
@@ -589,6 +621,7 @@
 				"\\DeclareMathOperator{\\Corr}{Corr}\r",
 				"\r",
 				"\\newcommand\\tableinput[1]{\\@@input{#1}} %Solves issue when inserting table core.\r",
+				"\newcommand{\textbfr}[1]{\textbf{\color{SPred}#1}} %BF SPred",
 				"\r",
 				"\\beamertemplatenavigationsymbolsempty\r",
 				"\\addtobeamertemplate{navigation symbols}{}{%\r",
@@ -599,6 +632,13 @@
 				"}\r",
 				"\r",
 				"\r",
+				"% Link and goto button colors",
+				"\setbeamercolor{button}{bg=SPred,fg=white}",
+				"\newcommand{\ubred}[2]{",
+				"	{\color{SPred}",
+				"	\underbrace{\color{black} #1}_{#2}",
+				"	}",
+				"}",
 				"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\r",
 				"%%%%%%%%%%%%%%%%%%%%%%%      BEGINING OF DOCUMENT      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\r",
 				"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\r",
@@ -617,6 +657,7 @@
 				"\\appendix\r",
 				"\r",
 				"\\begin{frame}{}\r",
+				"\color{SPred}",
 				"\\huge\r",
 				"\\centering \r",
 				"\\textbf{Appendix} \r",
